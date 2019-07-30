@@ -2,25 +2,43 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+
+class App extends Component {
+  state = {
+    bookArray:[
+      {
+        id: 1,
+        title: title1,
+        author: authors1,
+        description: description1,
+        image: image1,
+        link: link1
+      },
+      {
+        id: 2,
+        title: title2,
+        author: authors2,
+        description: description2,
+        image: image2,
+        link: link2
+      }
+    ],
+    
+  };
+
+render() {
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h2>Welcome to React</h2>
+      </div>
+      <p className="App-intro">
+        To get started, edit <code>src/App.js</code> and save to reload.
+      </p>
     </div>
   );
+}
 }
 
 export default App;

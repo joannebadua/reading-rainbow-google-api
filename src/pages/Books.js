@@ -27,7 +27,10 @@ class Books extends Component {
 
     API.saveBook(newBook)
     .then(res => {
-      const newBookarr = this.state.books.filter(()=> ) 
+      const newBookarr = this.state.books.filter(function(newBook) => {
+          return newBook;
+      };
+    }) 
       // return all books but the one with the newBook.id
 
       this.setState({
@@ -67,7 +70,7 @@ class Books extends Component {
                     value={this.state.query}
                     onChange={this.handleInputChange}
                     name="query"
-                    placeholder="Search Value (required)"
+                    placeholder="For Example: Noli Me Tangere (required)"
                   />
                   <FormBtn
                     disabled={!(this.state.query)}
@@ -77,6 +80,9 @@ class Books extends Component {
                   </FormBtn>
                 </form>
               </Col>
+              </Row>
+
+              <Row>
               <Col size="md-6 sm-12">
                 <Jumbotron>
                   <h1>Books On My List</h1>
@@ -89,16 +95,7 @@ class Books extends Component {
                         <img href={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
                         <p>{book.volumeInfo.description}</p>
                         <a href={book.volumeInfo.selfLink}>View book</a>
-                        <button onClick={()=>(this.saveBook(i))}>save</button>
-{/*                        
-                       {/* 
-                        title
-                        authors
-                        description
-                        image
-                        link – view
-                        save button
-                      */} */}
+                        <button onClick={()=>(this.saveBook(i))}>Save</button>
                       </ListItem>
                     ))}
                   </List>
@@ -112,4 +109,5 @@ class Books extends Component {
       }
     }
 }
+
     export default Books;
