@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
+import API from "../controllers/bookControllers";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -26,17 +26,19 @@ class Books extends Component {
     }
 
     API.saveBook(newBook)
-    .then(res => {
-      const newBookarr = this.state.books.filter(function(newBook) => {
-          return newBook;
-      };
-    }) 
+    console.log("newBook", newBook)
+    // .then(res => {
+    //   const newBookarr = this.state.books.filter((newBook) => {
+    //       return newBook;
+      // }
+      // )
+    // }) 
       // return all books but the one with the newBook.id
 
-      this.setState({
-        books: newBookarr
-      })
-    })
+      // this.setState({
+      //   books: newBookarr
+      // })
+    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -108,6 +110,6 @@ class Books extends Component {
         );
       }
     }
-}
+
 
     export default Books;
