@@ -51,11 +51,11 @@ class Books extends Component {
       handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.query) {
-          API.googleBooks(this.state.query)
+          API.getBooks(this.state.query)
             .then(res => this.setState({
                 books: res, 
                 query: "",
-                
+                // query is what the user types in, and res is the thing that we get back
               }))
             .catch(err => console.log(err));
         }

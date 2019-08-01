@@ -1,12 +1,14 @@
-const db = require("../models");
+// const db = require("../models");
 const axios = require("axios");
 
 // Defining methods for the booksController
 module.exports = {
-  googleBooks: function(req, res){
-    // query google api for books by name in the back-end. 
+  googleBooks: function(title){
+    // hit up/query google api for books by name in the back-end. send it to the react app.
+    // this route is gonna do a cool thing, go to goole api, grab goods and shoot it to react app.
+    // Similar to sneak extra stuff in the html to reference later (e.g. giphy game) to reference in an id later
     axios
-    .get("https://www.googleapis.com/books/v1/volumes", {query: req.params.query})
+    .get("https://www.googleapis.com/books/v1/volumes", {query: title})
       .then((results) =>{
         console.log(results)
         res.json(results.items)
