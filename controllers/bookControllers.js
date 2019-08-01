@@ -4,7 +4,7 @@ const axios = require("axios");
 // Defining methods for the booksController
 module.exports = {
   googleBooks: function(req, res){
-    // query google api for books by name
+    // query google api for books by name in the back-end. 
     axios
     .get("https://www.googleapis.com/books/v1/volumes", {query: req.params.query})
       .then((results) =>{
