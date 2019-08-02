@@ -51,13 +51,20 @@ class Books extends Component {
       handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.query) {
+          //user types "1984", and clicks submit. 
+          //API.getBooks will get triggered - look at API.js file. API.getBooks
           API.getBooks(this.state.query)
-            .then(res => this.setState({
-                books: res, 
-                query: "",
-                // query is what the user types in, and res is the thing that we get back
-              }))
-            .catch(err => console.log(err));
+          //fire off the API
+            .then((res) => {
+              // res => this.setState({
+              //   books: res, 
+              //   query: "",
+              //   // query is what the user types in, and res is the thing that we get back
+              // })
+              console.log("google API :-)", res);
+              //** */res will be the books from the google API which completes the cyclce
+              this.setState({books: res.data})
+              })          
         }
       };
     
