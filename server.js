@@ -66,7 +66,16 @@ app.post("/saveBook", function(req, res){
     console.log("Tuesday data", data)
   })
   //.create from booksController
+});
+//add find all - Friday
+app.get("/saveBook", function(req, res){
+  controller.findAll(function(data){
+    console.log("Friday data", data)
+    res.json(data)
+  })
+  //.create from booksController
 })
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
 app.listen(PORT, function() {

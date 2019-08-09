@@ -17,9 +17,9 @@ class Saved extends Component {
   }
 
   loadBooks = () => {
-    API.getBooks()
+    API.getAllSavedBooks()
       .then(res =>
-        this.setState({ books: res.data})
+        this.setState({ books: res})
       )
       .catch(err => console.log(err));
   };
@@ -30,6 +30,7 @@ class Saved extends Component {
       .catch(err => console.log(err));
   };
   render() {
+    console.log("this search saved", this.state)
     return (
       <Container fluid>
         <Row>

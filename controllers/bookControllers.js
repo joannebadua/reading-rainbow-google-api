@@ -21,11 +21,15 @@ module.exports = {
         console.log(err)
       });
   },
-  findAll: function(req, res) {
+  findAll: function(cb) {
+    // cb because ln 26 tells go to db to get all books
+    //once get all books, ln. 30 .then get books, then shoot to front end
+    //only server.js can take it tot he front end with code controller.findAll(function(data){ in server.js (whihc has the route)
+    //with res.json(data) to get to front end
     db.Book
       .find({})
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => cb(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(newBook, cb) {

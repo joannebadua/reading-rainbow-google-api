@@ -14,6 +14,10 @@ export default {
     saveBook: function(newBook) {
         return axios.post("/saveBook", newBook);
     },
+    //add get all saved books - friday; in Saved.js getAll SavedBooks. This function needs to have a route
+    getAllSavedBook: function(newBook) {
+        return axios.get("/saveBook");
+    },
     getBook: function(id) {
         return axios.get("/api/books/" + id);
     },
