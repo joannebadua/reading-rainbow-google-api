@@ -1,5 +1,5 @@
 import React from 'react';
-// import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Saved from "./pages/Saved";
 import Books from "./pages/Books";
 // import DeleteBtn from "./components/DeleteBtn";
@@ -37,13 +37,14 @@ import './App.css';
 function App () {
   return (
     <div className="App">
-      <div className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <Books />
+       <Router>
+      <div>
+        {/* Get the same vibes up top ln 2-3 */}
+        <Route exact path="/books" component={Books} />
+        <Route path="/saved" component={Saved} />
       </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
+    </Router>
+
     </div>
   );
 }
