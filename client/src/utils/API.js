@@ -11,6 +11,9 @@ export default {
         return axios.post("http://localhost:3001/searchBook", { data:title });
     },
     //loadBook specific id
+    saveBook: function(newBook) {
+        return axios.post("/saveBook", newBook);
+    },
     getBook: function(id) {
         return axios.get("/api/books/" + id);
     },

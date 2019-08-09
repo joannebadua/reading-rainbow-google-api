@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
+// import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 // import API from "../controllers/bookControllers";
 // dont need to import in the front end because this is a back-end file
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
 class Books extends Component {
   state = {
@@ -20,13 +20,13 @@ class Books extends Component {
     
     const newBook = {
       title: bookData.volumeInfo.title,
-      author: bookData.volumeInfo.author,
+      author: bookData.volumeInfo.authors,
       image: bookData.volumeInfo.image,
       link: bookData.volumeInfo.link,
       description: bookData.volumeInfo.description,
-      id: bookData.volumeInfo.id
+      googleId: bookData.volumeInfo.id
     }
-
+    console.log("Tuesday", newBook)
     API.saveBook(newBook)
     console.log("newBook", newBook)
     // .then(res => {
@@ -42,6 +42,7 @@ class Books extends Component {
       // })
     }
     handleInputChange = event => {
+      //this handles input change in what the user types
         const { name, value } = event.target;
         this.setState({
           [name]: value
@@ -68,6 +69,12 @@ class Books extends Component {
         }
       };
     
+      handleSaveBook = id => {
+        const savedBook = this.state.books.filter(book => book.id === id)
+        const bookDetails = {
+          googleId: id,
+        }
+      }
       render() {
         return (
           <Container fluid>
@@ -103,9 +110,10 @@ class Books extends Component {
                     {this.state.books.map((book, i) => (
                       <ListItem key={`googlebook-${i}`}>
                         <h4>{book.volumeInfo.title}</h4>
-                        <img href={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
+                        <h3>{book.volumeInfo.authors}</h3>
+                        <img href={book.volumeInfo.image} alt={book.volumeInfo.title}/>
                         <p>{book.volumeInfo.description}</p>
-                        <a href={book.volumeInfo.selfLink}>View book</a>
+                        <a href={book.volumeInfo.link}>View book</a><br></br>
                         <button onClick={()=>(this.saveBook(i))}>Save</button>
                       </ListItem>
                     ))}

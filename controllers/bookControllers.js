@@ -1,4 +1,4 @@
-// const db = require("../models");
+const bookModel = require("../models/books.js");
 const axios = require("axios");
 
 // Defining methods for the booksController
@@ -10,7 +10,7 @@ module.exports = {
     axios
     .get(`https://www.googleapis.com/books/v1/volumes/?q=${title}`)
       .then((results) =>{
-        console.log(results)
+        // console.log(results)
         // res.json(results.items) //this would only be available if we have access to a route file
         // instead we do a callback
         callback(results.data.items);
@@ -28,12 +28,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  create: function(newBook, cb) {
     // save a book to the db
-    db.Book
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    bookModel
+      .create(newBook)
+      .then((dbModel) => {
+        // res.json(dbModel)
+        cb(dbModel)})
+      .catch(error => cb(error));
   },
   remove: function(req, res) {
     db.Book

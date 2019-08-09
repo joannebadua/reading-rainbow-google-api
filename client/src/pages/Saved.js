@@ -1,34 +1,34 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
+// import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
-// import API from "../utils/API";
+import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
-class Books extends Component {
+class Saved extends Component {
   state = {
     books: [],
     query: ""
   };
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
+  componentDidMount() {
+    this.loadBooks();
+  }
 
-  // loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data})
-  //     )
-  //     .catch(err => console.log(err));
-  // };
+  loadBooks = () => {
+    API.getBooks()
+      .then(res =>
+        this.setState({ books: res.data})
+      )
+      .catch(err => console.log(err));
+  };
 
-  // deleteBook = id => {
-  //   API.deleteBook(id)
-  //     .then(res => this.loadBooks())
-  //     .catch(err => console.log(err));
-  // };
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.loadBooks())
+      .catch(err => console.log(err));
+  };
   render() {
     return (
       <Container fluid>
@@ -64,7 +64,7 @@ class Books extends Component {
                     <img href={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
                     <p>{book.volumeInfo.description}</p>
                     <a href={book.volumeInfo.selfLink}>View book</a>
-                    <button onClick={()=>(this.saveBook(i))}>save</button>
+                    {/* <button onClick={()=>(this.saveBook(i))}>save</button> */}
                    {/* 
                     title
                     authors
@@ -86,4 +86,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Saved;

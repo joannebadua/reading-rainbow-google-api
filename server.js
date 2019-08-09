@@ -9,6 +9,7 @@ const app = express();
 
 const controller = require ("./controllers/bookControllers");
 
+
 const PORT = process.env.PORT || 3001;
 // node express No 'Access-Control-Allow-Origin' - this search made contact 
 // Add headers
@@ -59,6 +60,13 @@ app.post("/searchBook", function(req, res){
   })
   // see bookControllers.js which has the googlebooks API link
 });
+app.post("/saveBook", function(req, res){
+  // console.log("Tuesday", req.body)
+  controller.create(req.body, function(data){
+    console.log("Tuesday data", data)
+  })
+  //.create from booksController
+})
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
 app.listen(PORT, function() {
